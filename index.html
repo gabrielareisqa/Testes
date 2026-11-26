@@ -95,6 +95,38 @@
   .tag.v{background:var(--gold-soft);color:#9a6b00}
   .tag.e{background:var(--green-soft);color:var(--green)}
 
+  /* as 4 formas de ganhar */
+  /* 6 colunas: os 3 do War Room ocupam 2 cada (1ª linha); os 2 do Indique & Ganhe, 3 cada (2ª linha) */
+  .prizes{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .prizes .prize-card.wr{grid-column:span 2}
+  .prizes .prize-card.ig{grid-column:span 3}
+  .prize-card{position:relative;padding:20px 18px 18px;display:flex;flex-direction:column;gap:6px}
+  .prize-card .num{position:absolute;top:14px;right:16px;font-family:Outfit;font-weight:900;font-size:13px;color:#b9b4c8}
+  .prize-card .pic{font-size:34px;line-height:1}
+  .prize-card h3{font-size:18px;margin-top:4px}
+  .prize-card p{font-size:14px;color:var(--muted)}
+  .prize-card .when{font-size:12.5px;font-weight:600;margin-top:auto;padding-top:8px}
+  .prize-card.wr{border-top:5px solid var(--cyan)}
+  .prize-card.wr .when{color:#007f95}
+  .prize-card.ig{border-top:5px solid var(--purple)}
+  .prize-card.ig .when{color:var(--purple)}
+  .prize-group-label{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:12px}
+  .prize-group-label i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+
+  /* opp qualificada */
+  .accel td,.accel th{text-align:center}
+  .accel td:first-child,.accel th:first-child{text-align:left}
+  .accel th{text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink)}
+  .accel th small{display:block;font-family:Inter;font-weight:500;font-size:12px;color:var(--muted)}
+  .accel td.hit{background:var(--green-soft);color:var(--green);font-weight:800;box-shadow:inset 0 0 0 2px var(--green)}
+  .opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  .opp-rules{padding-left:18px;color:var(--muted)}
+  .opp-rules li{margin:7px 0}
+  .opp-rules li b{color:var(--ink)}
+  .opp-out .sim-total{font-size:clamp(40px,5.5vw,54px)}
+  .opp-calc-line{font-size:15px;color:var(--muted);margin-top:8px}
+  .opp-calc-line b{color:var(--ink)}
+
   /* valores */
   .values{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .value{position:relative;overflow:hidden}
@@ -126,7 +158,11 @@
   .flow .node b{display:block;font-family:Outfit;font-size:19px;margin-bottom:4px}
   .flow .node span{font-size:14px;opacity:.9}
   .flow .arrow{display:flex;align-items:center;font-size:26px;font-weight:800}
-  .gains{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  /* 6 colunas: os 2 do Indique & Ganhe ocupam 3 cada (1ª linha); os 3 do War Room, 2 cada (2ª linha) */
+  .gains{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}
+  .gain.ig{grid-column:span 3}
+  .gain.wr{grid-column:span 2}
+  .gain.wr .n{color:#007f95}
   .gain{background:#fff;color:var(--ink);border-radius:16px;padding:16px}
   .gain .n{font-family:Outfit;font-weight:900;font-size:13px;color:var(--purple);letter-spacing:.08em;text-transform:uppercase}
   .gain b{display:block;font-size:17px;margin:2px 0}
@@ -157,6 +193,10 @@
   .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.08)}
   .sim-out{background:linear-gradient(180deg,#fffaf0,#fff);border:1px solid #f3e2b3}
   .sim-total{font-family:Outfit;font-weight:900;font-size:clamp(44px,6vw,60px);color:var(--green);letter-spacing:-.02em;line-height:1}
+  .sim-break{margin-top:14px;border-top:1px dashed #f3e2b3}
+  .sim-break div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed #f3e2b3;font-size:14px;color:var(--muted)}
+  .sim-break small{display:block;font-size:12.5px}
+  .sim-break b{font-family:Outfit;font-weight:800;font-size:18px;color:var(--green);white-space:nowrap}
   .sim-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
   .chip{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px}
   .chip b{font-family:Outfit;font-size:20px;display:block;color:var(--purple)}
@@ -181,8 +221,35 @@
 
   /* surpresa */
   .surprise{text-align:center;padding:40px 24px;background:radial-gradient(circle at 50% 0%,#f4ecff,#fff 70%)}
-  .gift{font-size:76px;display:inline-block;animation:wiggle 2.2s ease-in-out infinite}
-  @keyframes wiggle{0%,100%{transform:rotate(0)}10%{transform:rotate(-12deg)}20%{transform:rotate(10deg)}30%{transform:rotate(-6deg)}40%{transform:rotate(0)}}
+  /* caixa de presente que abre e solta prêmios */
+  .gb-hint{display:inline-block;margin-top:34px;font-size:14px;font-weight:700;color:var(--purple);background:var(--purple-soft);padding:6px 14px;border-radius:999px;animation:gbbob 1.6s ease-in-out infinite;transition:opacity .25s}
+  @keyframes gbbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .gb-hint.hide{opacity:0}
+  .giftbox{display:block;position:relative;width:170px;height:112px;margin:8px auto 0;cursor:pointer;border:0;background:none;padding:0;font:inherit;transition:transform .15s}
+  .giftbox:hover{transform:scale(1.05)}
+  .giftbox:focus-visible{outline:3px solid var(--purple);outline-offset:6px;border-radius:12px}
+  .gb-wrap{position:absolute;inset:0;transform-origin:50% 100%}
+  .giftbox.open .gb-wrap{animation:gbshake 3.6s ease-in-out 1}
+  .giftbox.open .gb-lid{animation:gblid 3.6s ease-in-out 1}
+  .giftbox.open .gb-prizes span{animation:gbprize 3.6s ease-out 1}
+  .gb-body{position:absolute;left:33px;bottom:0;width:104px;height:78px;border-radius:6px 6px 14px 14px;background:linear-gradient(180deg,#ffd447,#f2a900);box-shadow:inset 0 -8px 0 rgba(0,0,0,.08),0 16px 26px -12px rgba(160,100,0,.6);z-index:3}
+  .gb-body::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:20px;margin-left:-10px;background:linear-gradient(180deg,#ff3b6b,#d61f56)}
+  .gb-lid{position:absolute;left:25px;bottom:74px;width:120px;height:26px;border-radius:8px;background:linear-gradient(180deg,#ffe066,#f5b400);box-shadow:0 4px 0 rgba(0,0,0,.08);z-index:1;transform-origin:10% 100%}
+  .gb-lid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:22px;margin-left:-11px;background:linear-gradient(180deg,#ff5a80,#e8245c)}
+  .gb-bow{position:absolute;left:50%;top:-20px;width:56px;height:24px;margin-left:-28px;background:radial-gradient(circle at 50% 75%,#c81a4c 0 7px,transparent 8px)}
+  .gb-bow::before,.gb-bow::after{content:"";position:absolute;bottom:2px;width:26px;height:18px;border-radius:50%;background:#ff3b6b;box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
+  .gb-bow::before{left:2px;transform:rotate(22deg)}
+  .gb-bow::after{right:2px;transform:rotate(-22deg)}
+  .gb-prizes span{position:absolute;left:50%;bottom:44px;font-size:30px;line-height:1;opacity:0;z-index:2}
+  @keyframes gbshake{0%,100%{transform:rotate(0)}4%{transform:rotate(-7deg)}8%{transform:rotate(7deg)}12%{transform:rotate(-4deg)}16%{transform:rotate(0)}}
+  @keyframes gblid{0%,17%{transform:none}25%,80%{transform:translate(-40px,-50px) rotate(-30deg)}92%,100%{transform:none}}
+  @keyframes gbprize{
+    0%,26%{opacity:0;transform:translate(-50%,0) scale(.3) rotate(0)}
+    32%{opacity:1}
+    58%{opacity:1;transform:translate(calc(-50% + var(--x)),var(--y)) scale(1) rotate(var(--r))}
+    78%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(var(--y) - 16px)) scale(.9) rotate(var(--r))}
+    100%{opacity:0;transform:translate(-50%,0) scale(.3)}
+  }
   .surprise h3{font-size:30px;margin:8px 0}
   .surprise p{color:var(--muted)}
 
@@ -200,26 +267,64 @@
   .final p{color:var(--muted);font-size:17px;max-width:620px;margin:10px auto 0}
   .shout{font-family:Outfit;font-weight:900;font-size:clamp(22px,3.4vw,32px);margin-top:22px}
 
+  /* folga: cena de praia animada */
+  .final p.folga-txt{margin-top:26px;font-size:18px;color:var(--ink)}
+  .vacay{position:relative;max-width:620px;height:190px;margin:18px auto 0;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(180deg,#ffd6a5 0%,#ffe9c7 48%,#bfeaf7 64%)}
+  .vacay .badge{position:absolute;top:14px;left:16px;z-index:6;background:rgba(255,255,255,.85);color:var(--ink);font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px}
+  .vacay .sun{position:absolute;top:22px;right:24%;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#fff6b8,#ffc23a 60%,#ff9f1c);animation:sunglow 3s ease-in-out infinite}
+  @keyframes sunglow{0%,100%{box-shadow:0 0 0 8px rgba(255,200,60,.25),0 0 30px 10px rgba(255,180,40,.35)}50%{box-shadow:0 0 0 16px rgba(255,200,60,.18),0 0 46px 18px rgba(255,180,40,.45)}}
+  .vacay .cloud{position:absolute;font-size:30px;opacity:.9;animation:drift linear infinite}
+  .vacay .cloud.c1{top:16px;animation-duration:26s}
+  .vacay .cloud.c2{top:44px;font-size:22px;animation-duration:38s;animation-delay:-14s}
+  @keyframes drift{from{left:-60px}to{left:100%}}
+  .vacay .sea{position:absolute;left:0;right:0;bottom:30px;height:74px;background:linear-gradient(180deg,#5cc6e6,#2fa3cf)}
+  .vacay .wave{position:absolute;left:0;width:200%;height:16px;animation:waves linear infinite}
+  .vacay .wave.w1{top:-12px;animation-duration:9s}
+  .vacay .wave.w2{bottom:-4px;height:14px;animation-duration:6s;animation-direction:reverse;opacity:.75}
+  @keyframes waves{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .vacay .boat{position:absolute;bottom:62px;font-size:28px;animation:sail 30s linear infinite,bob 2.4s ease-in-out infinite}
+  @keyframes sail{from{left:105%}to{left:-12%}}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-4px) rotate(3deg)}}
+  .vacay .sand{position:absolute;left:-5%;right:-5%;bottom:0;height:40px;background:#f3d79c;border-radius:50% 50% 0 0/22px 22px 0 0}
+  .vacay .palm{position:absolute;bottom:18px;left:7%;font-size:78px;line-height:1;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite;z-index:4}
+  @keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+  .vacay .umbrella{position:absolute;bottom:14px;right:13%;font-size:56px;line-height:1;z-index:4}
+  .vacay .drink{position:absolute;bottom:12px;right:6%;font-size:30px;line-height:1;z-index:5;animation:bob 2.8s ease-in-out infinite}
+  .vacay .zzz{position:absolute;bottom:58px;right:22%;z-index:5;font-weight:800;color:#2b6f8f;font-family:Outfit}
+  .vacay .zzz span{position:absolute;opacity:0;animation:zz 3s ease-out infinite}
+  .vacay .zzz span:nth-child(2){animation-delay:1s;font-size:1.2em}
+  .vacay .zzz span:nth-child(3){animation-delay:2s;font-size:1.4em}
+  @keyframes zz{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(18px,-46px)}}
+
   footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;font-size:13px;color:var(--muted);position:relative;z-index:2;background:var(--bg)}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
 
   @media (max-width:820px){
-    .hero-grid,.fronts,.values,.podiums,.example,.sim,.lists,.links{grid-template-columns:1fr}
+    .hero-grid,.fronts,.values,.podiums,.example,.sim,.lists,.links,.opp-grid{grid-template-columns:1fr}
+    .prizes{grid-template-columns:1fr 1fr}
+    .prizes .prize-card.wr,.prizes .prize-card.ig{grid-column:auto}
+    .accel th,.accel td{white-space:nowrap;padding:12px 12px}
     .poster{max-width:380px;margin:0 auto}
     .flow{grid-template-columns:1fr}
     .flow .arrow{justify-content:center;transform:rotate(90deg)}
     .gains{grid-template-columns:1fr}
+    .gain.ig,.gain.wr{grid-column:auto}
     .double{padding:26px 20px}
     .decide{display:block;overflow-x:auto}
     .front{flex-wrap:wrap}
   }
+  @media (max-width:520px){ .prizes{grid-template-columns:1fr} }
   @media (max-width:420px){ .wrap{padding:0 16px} }
   @media (prefers-reduced-motion:reduce){
     #rain{display:none}
     .reveal{opacity:1;transform:none;transition:none}
-    .gift,.pill .dot{animation:none}
+    .gb-hint,.pill .dot{animation:none}
+    .vacay *{animation:none !important}
+    .vacay .cloud.c1{left:12%} .vacay .cloud.c2{left:62%} .vacay .boat{left:58%}
+    .giftbox.open .gb-wrap,.giftbox.open .gb-prizes span{animation:none}
+    .giftbox.open .gb-lid{animation:none;transform:translate(-40px,-50px) rotate(-30deg)}
   }
 </style>
 </head>
@@ -232,10 +337,11 @@
     <div>
       <span class="pill"><span class="dot"></span> Sexta, 27/11/2026 · Ipê Digital</span>
       <h1>War Room<br><span class="grad-text">Black Friday 360°</span></h1>
-      <p class="lead">Guia rápido das premiações: quais forms usar, quanto você ganha e como uma única indicação pode render <b>prêmio em dobro</b>. Todo mundo pode participar, prospectando ou não.</p>
+      <p class="lead">Guia rápido das premiações: são <b>3 prêmios do War Room</b> (por opp qualificada, The Wall e pódio) e ainda o <b>Indique &amp; Ganhe</b> (prêmio convencional e pódio). Veja quais forms usar, quanto você ganha e como uma única indicação pode render <b>muito prêmio</b>. Todo mundo pode participar, prospectando ou não.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#frentes">Entender as regras 💸</a>
-        <a class="btn btn-ghost" href="#simulador">Simular meus ganhos</a>
+        <a class="btn btn-ghost" href="#simulador">Simular ganhos do Indique &amp; Ganhe</a>
+        <a class="btn btn-ghost" href="#opp">Simular ganhos por oportunidade qualificada</a>
       </div>
       <div class="countdown" id="countdown" aria-label="Contagem regressiva para o War Room">
         <div class="cd"><b id="cd-d">0</b><span>dias</span></div>
@@ -261,18 +367,18 @@
         <h3>🤝 Indique &amp; Ganhe</h3>
         <div class="when">Vale o <b>mês inteiro</b> · indicações fechadas até <b>30/11</b></div>
         <div class="front">
-          <div><span class="tag v">Vendas</span><strong>Forms Indique e Ganhe Vendas</strong><small>R$ 250 por indicação fechada</small></div>
+          <div><span class="tag v">Vendas</span><strong>Forms Indique e Ganhe Vendas</strong><small>R$ 250 por indicação fechada + pódio Indique &amp; Ganhe</small></div>
           <a href="https://ipedig.typeform.com/to/XgyyCVA3" target="_blank" rel="noopener">Abrir forms ↗</a>
         </div>
         <div class="front">
-          <div><span class="tag e">Expansão</span><strong>Forms Indique e Ganhe Expansão</strong><small>R$ 80 por indicação fechada</small></div>
+          <div><span class="tag e">Expansão</span><strong>Forms Indique e Ganhe Expansão</strong><small>R$ 80 por indicação fechada + pódio Indique &amp; Ganhe</small></div>
           <a href="https://ipedig.typeform.com/to/nXAByYX9" target="_blank" rel="noopener">Abrir forms ↗</a>
         </div>
       </div>
 
       <div class="front-group wr">
         <h3>🔥 War Room Black Friday</h3>
-        <div class="when">Somente no <b>dia 27/11</b> · listas prontas do evento</div>
+        <div class="when">Evento no <b>dia 27/11</b> · opps e pódio contam de <b>26/11 a 30/11</b> · listas prontas do evento</div>
         <div class="front">
           <div><span class="tag v">Vendas</span><strong>Forms War Room Vendas</strong><small>Leads da lista do Gustavo</small></div>
           <a href="https://ipedig.typeform.com/warroomvendBF26" target="_blank" rel="noopener">Abrir forms ↗</a>
@@ -285,9 +391,109 @@
     </div>
   </section>
 
+  <!-- AS 4 FORMAS DE GANHAR -->
+  <section id="premiacoes" class="reveal">
+    <div class="eyebrow">Passo 2</div>
+    <h2>Quantas premiações existem?</h2>
+    <p class="sub">Na prática, são <b>3 premiações do War Room Black Friday</b>. E, por fora, o <b>Indique &amp; Ganhe</b> continua valendo com as suas duas: o <b>prêmio convencional</b> e o <b>pódio</b>. Uma mesma pessoa pode ganhar em todas.</p>
+
+    <div class="prizes">
+      <div class="card prize-card wr">
+        <span class="num">1</span>
+        <div class="pic">🎯</div>
+        <h3>Por opp qualificada</h3>
+        <p>Cada oportunidade qualificada vale de <b>R$ 10 a R$ 30</b>. Quanto mais opps, maior o valor de cada uma. Indicação do Indique &amp; Ganhe fechada em 27/11 <b>também conta</b>.</p>
+        <div class="when">War Room · de 26/11 a 30/11</div>
+      </div>
+      <div class="card prize-card wr">
+        <span class="num">2</span>
+        <div class="pic">🧱</div>
+        <h3>The Wall</h3>
+        <p>A oportunidade <b>virou venda no dia 27/11</b>? Então você ganha uma jogada no The Wall.</p>
+        <div class="when">War Room · somente em 27/11</div>
+      </div>
+      <div class="card prize-card wr">
+        <span class="num">3</span>
+        <div class="pic">🏆</div>
+        <h3>Pódio War Room</h3>
+        <p>O ranking do evento. Contam as opps e vendas do forms War Room de <b>26/11 a 30/11</b> e as indicações do Indique &amp; Ganhe fechadas em <b>27/11</b>. Os primeiros colocados levam o prêmio, que é <b>surpresa</b>.</p>
+        <div class="when">War Room · de 26/11 a 30/11</div>
+      </div>
+      <div class="card prize-card ig">
+        <span class="num">+</span>
+        <div class="pic">🤝</div>
+        <h3>Indique &amp; Ganhe convencional</h3>
+        <p><b>R$ 250</b> (Vendas) ou <b>R$ 80</b> (Expansão) por indicação fechada. Fechou em 27/11? Entra <b>também nas 3 do War Room</b>.</p>
+        <div class="when">Indique &amp; Ganhe · mês inteiro, até 30/11</div>
+      </div>
+      <div class="card prize-card ig">
+        <span class="num">+</span>
+        <div class="pic">🥇</div>
+        <h3>Pódio Indique &amp; Ganhe</h3>
+        <p>Toda indicação fechada no mês conta para o pódio, com presentes como <b>vale-viagem de R$ 10 mil</b>, <b>iPhone 17</b> e <b>PlayStation 5</b>.</p>
+        <div class="when">Indique &amp; Ganhe · mês inteiro, até 30/11</div>
+      </div>
+    </div>
+    <div class="prize-group-label">
+      <span><i style="background:var(--cyan)"></i>Premiações do War Room</span>
+      <span><i style="background:var(--purple)"></i>Premiações do Indique &amp; Ganhe</span>
+    </div>
+  </section>
+
+  <!-- POR OPP QUALIFICADA -->
+  <section id="opp" class="reveal">
+    <div class="eyebrow">Passo 3 · Premiação 1</div>
+    <h2>Quanto vale cada opp qualificada?</h2>
+    <p class="sub">Funciona como uma escada: quanto mais oportunidades qualificadas você gera, mais alto o degrau. E o valor do degrau que você alcançou vale para <b>todas</b> as suas opps, não só para as últimas.</p>
+
+    <table class="decide accel" id="accelTable">
+      <thead>
+        <tr>
+          <th>Área</th>
+          <th>R$ 10<small>por opp</small></th>
+          <th>R$ 15<small>por opp</small></th>
+          <th>R$ 20<small>por opp</small></th>
+          <th>R$ 25<small>por opp</small></th>
+          <th>R$ 30<small>por opp</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-area="v"><td><b>Vendas</b><br><small style="color:var(--muted)">quantidade de opps</small></td><td>1 a 2</td><td>3 a 4</td><td>5 a 6</td><td>7 a 8</td><td>9 ou mais</td></tr>
+        <tr data-area="e"><td><b>Expansão</b><br><small style="color:var(--muted)">quantidade de opps</small></td><td>1 a 5</td><td>6 a 10</td><td>11 a 15</td><td>16 a 20</td><td>21 ou mais</td></tr>
+      </tbody>
+    </table>
+
+    <div class="opp-grid">
+      <div class="card">
+        <h3 style="font-size:19px;margin-bottom:8px">📌 Como funciona</h3>
+        <ul class="opp-rules">
+          <li><b>Exemplo:</b> 5 opps qualificadas em Vendas = 5 × R$ 20 = <b>R$ 100</b>.</li>
+          <li>Contam as opps do <b>forms War Room</b> e também as <b>indicações do Indique &amp; Ganhe que fecharem no dia 27/11</b>.</li>
+          <li>A faixa de <b>Vendas</b> pede menos opps porque a lista é <b>fria</b>, ou seja, a prospecção é mais difícil.</li>
+          <li>Opps de <b>Expansão</b> e de <b>OticaPay</b> somam juntas na faixa de Expansão.</li>
+          <li>As opps do <b>forms War Room</b> contam <b>de 26/11 a 30/11</b>. Já as indicações do <b>Indique &amp; Ganhe</b> contam <b>só se fecharem em 27/11</b>. Fora disso, não entram na apuração.</li>
+          <li>Os prêmios dos rankings acontecem <b>mesmo que a meta geral do War Room não seja batida</b>.</li>
+        </ul>
+      </div>
+      <div class="card sim-out opp-out">
+        <div class="seg" role="tablist" id="oppSeg">
+          <button class="on" data-a="v" type="button">Vendas</button>
+          <button data-a="e" type="button">Expansão</button>
+        </div>
+        <div class="field">
+          <label for="opps">Quantas opps qualificadas? <output id="oppsOut">5</output></label>
+          <input id="opps" type="range" min="0" max="60" value="5">
+        </div>
+        <div style="color:var(--muted);font-size:14px;font-weight:600">Você recebe por opp qualificada</div>
+        <div class="sim-total" id="oppTotal">R$ 100</div>
+        <div class="opp-calc-line" id="oppLine">5 opps × <b>R$ 20</b> cada</div>
+      </div>
+    </div>
+  </section>
+
   <!-- INDIQUE E GANHE -->
   <section class="reveal">
-    <div class="eyebrow">Passo 2</div>
+    <div class="eyebrow">Passo 4 · Indique &amp; Ganhe</div>
     <h2>Indique &amp; Ganhe: dinheiro + pódio</h2>
     <p class="sub">Toda indicação feita durante o mês e <b>fechada até 30/11</b> paga o prêmio em dinheiro e ainda coloca você na disputa pelos presentes divulgados pelo Marketing.</p>
 
@@ -326,26 +532,28 @@
     </div>
   </section>
 
-  <!-- GANHA DOBRADO -->
+  <!-- FECHOU EM 27/11: GANHA MUITO -->
   <section class="reveal">
     <div class="double">
       <div class="bg-money">💸</div>
       <div class="eyebrow" style="color:#fff;opacity:.85">O pulo do gato</div>
-      <h2>Fechou no dia 27/11? Você ganha dobrado.</h2>
-      <p class="sub">Se um cliente que você indicou pelo <b>forms Indique &amp; Ganhe</b> fechar durante o War Room, a indicação vale nos dois programas. Uma verdadeira máquina de ganhar.</p>
+      <h2>Fechou no dia 27/11? Você ganha muito.</h2>
+      <p class="sub">Se um cliente que você indicou pelo <b>forms Indique &amp; Ganhe</b> fechar durante o War Room, a indicação vale nos dois programas: você leva as <b>2 premiações do Indique &amp; Ganhe</b> e as <b>3 do War Room</b>. Uma verdadeira máquina de ganhar.</p>
 
       <div class="flow">
         <div class="node"><b>1. Você indica</b><span>pelo forms Indique &amp; Ganhe (Vendas ou Expansão), em qualquer dia do mês</span></div>
         <div class="arrow">→</div>
         <div class="node"><b>2. Cliente fecha em 27/11</b><span>a conversão acontece durante o War Room Black Friday</span></div>
         <div class="arrow">→</div>
-        <div class="node"><b>3. Prêmio em dobro</b><span>você leva o prêmio normal e entra nas premiações do evento</span></div>
+        <div class="node"><b>3. Você ganha muito</b><span>leva as premiações do Indique &amp; Ganhe e ainda entra nas do War Room</span></div>
       </div>
 
       <div class="gains">
-        <div class="gain"><div class="n">Ganho 1</div><b>Prêmio normal</b><span>R$ 250 (Vendas) ou R$ 80 (Expansão) + pódio Indique &amp; Ganhe</span></div>
-        <div class="gain"><div class="n">Ganho 2</div><b>Jogar o The Wall</b><span>cada indicação fechada no dia vale uma participação</span></div>
-        <div class="gain"><div class="n">Ganho 3</div><b>Pódio War Room</b><span>a indicação também conta para o pódio do evento</span></div>
+        <div class="gain ig"><div class="n">Ganho 1 · Indique &amp; Ganhe</div><b>Prêmio convencional</b><span>R$ 250 (Vendas) ou R$ 80 (Expansão) por indicação fechada</span></div>
+        <div class="gain ig"><div class="n">Ganho 2 · Indique &amp; Ganhe</div><b>Pódio Indique &amp; Ganhe</b><span>a indicação conta para o pódio do mês</span></div>
+        <div class="gain wr"><div class="n">Ganho 3 · War Room</div><b>Opp qualificada</b><span>a indicação também conta como opp qualificada (R$ 10 a R$ 30)</span></div>
+        <div class="gain wr"><div class="n">Ganho 4 · War Room</div><b>Jogar o The Wall</b><span>cada indicação fechada no dia vale uma participação</span></div>
+        <div class="gain wr"><div class="n">Ganho 5 · War Room</div><b>Pódio War Room</b><span>a indicação também conta para o pódio do evento</span></div>
       </div>
     </div>
   </section>
@@ -366,24 +574,25 @@
         </div>
       </div>
       <div class="card">
-        <div class="result-row"><span class="k">Prêmio Indique &amp; Ganhe<br><small>20 × R$ 250</small></span><span class="v money">R$ 5.000</span></div>
+        <div class="result-row"><span class="k">Prêmio Indique &amp; Ganhe (convencional)<br><small>20 × R$ 250</small></span><span class="v money">R$ 5.000</span></div>
+        <div class="result-row"><span class="k">Opps qualificadas do War Room<br><small>as 5 de 27/11 × R$ 20 (faixa de 5 a 6 opps)</small></span><span class="v money">R$ 100</span></div>
         <div class="result-row"><span class="k">Participações no The Wall</span><span class="v">5 🧱</span></div>
         <div class="result-row"><span class="k">Indicações no pódio War Room</span><span class="v">5 🏆</span></div>
         <div class="result-row"><span class="k">Pódio Indique &amp; Ganhe</span><span class="v">20 ✅</span></div>
       </div>
     </div>
-    <p class="note">A mesma lógica vale para o Indique &amp; Ganhe Expansão (R$ 80 por indicação).</p>
+    <p class="note">A mesma lógica vale para o Indique &amp; Ganhe Expansão: R$ 80 por indicação, e a opp qualificada segue a faixa de Expansão (5 opps = R$ 10 cada).</p>
   </section>
 
   <!-- SIMULADOR -->
   <section id="simulador" class="reveal">
     <div class="eyebrow">Faça as contas</div>
-    <h2>Simulador de ganhos</h2>
-    <p class="sub">Arraste e veja quanto suas indicações podem render. É muito prêmio, meu povo.</p>
+    <h2>Simulador do Indique &amp; Ganhe</h2>
+    <p class="sub">Arraste e veja quanto suas indicações podem render. É muito prêmio, meu povo. As indicações que fecharem no dia 27/11 também contam como <b>opp qualificada</b>, e o simulador já soma esse valor.</p>
 
     <div class="card sim">
       <div>
-        <div class="seg" role="tablist">
+        <div class="seg" role="tablist" id="simSeg">
           <button class="on" data-v="250" type="button">Vendas · R$ 250</button>
           <button data-v="80" type="button">Expansão · R$ 80</button>
         </div>
@@ -398,14 +607,18 @@
         <button class="btn btn-primary" id="rainBtn" type="button">Fazer chover 💸</button>
       </div>
       <div class="card sim-out">
-        <div style="color:var(--muted);font-size:14px;font-weight:600">Você recebe no Indique &amp; Ganhe</div>
-        <div class="sim-total" id="simTotal">R$ 5.000</div>
+        <div style="color:var(--muted);font-size:14px;font-weight:600">Você recebe em dinheiro</div>
+        <div class="sim-total" id="simTotal">R$ 5.100</div>
+        <div class="sim-break">
+          <div><span>Indique &amp; Ganhe convencional<small id="simIgCalc">20 × R$ 250</small></span><b id="simIgVal">R$ 5.000</b></div>
+          <div><span>Opps qualificadas (fechadas em 27/11)<small id="simOppCalc">5 × R$ 20</small></span><b id="simOppVal">R$ 100</b></div>
+        </div>
         <div class="sim-chips">
           <div class="chip"><b id="simWall">5</b>jogadas no The Wall</div>
           <div class="chip"><b id="simPod">5</b>no pódio War Room</div>
           <div class="chip"><b id="simIg">20</b>no pódio Indique &amp; Ganhe</div>
         </div>
-        <p class="note">Simulação ilustrativa. Vale o que for validado pelo time responsável pelo evento.</p>
+        <p class="note">Se você também qualificar opps pelo forms War Room, elas somam na mesma faixa e o valor de cada opp pode subir. Simulação ilustrativa. Vale o que for validado pelo time responsável pelo evento.</p>
       </div>
     </div>
   </section>
@@ -421,8 +634,8 @@
         <h3>📋 Lead da lista pronta</h3>
         <ul>
           <li>Indique pelo <b>forms War Room Black Friday Vendas</b> ou <b>War Room Black Friday Expansão</b>.</li>
-          <li>Concorre <b>somente às premiações do evento</b>: The Wall e pódio War Room.</li>
-          <li>Não entra no prêmio em dinheiro do Indique &amp; Ganhe.</li>
+          <li>Concorre <b>somente às 3 premiações do War Room</b>: por opp qualificada, The Wall (se virar venda em 27/11) e pódio, contando de 26/11 a 30/11.</li>
+          <li>Não entra no Indique &amp; Ganhe: nem no prêmio convencional, nem no pódio.</li>
         </ul>
       </div>
       <div class="card rule alt">
@@ -437,7 +650,7 @@
 
     <div class="card" style="margin-top:18px;display:flex;gap:16px;align-items:center">
       <div style="font-size:40px">🎧</div>
-      <div><b>Exemplo: o Suporte também ganha.</b><br><span style="color:var(--muted)">O Suporte indicou um cliente pelo forms Indique &amp; Ganhe e ele fechou no dia 27/11. Quem indicou leva o prêmio convencional, joga o The Wall e ainda concorre ao pódio do War Room.</span></div>
+      <div><b>Exemplo: Todos podem ganhar.</b><br><span style="color:var(--muted)">O Analista indicou um cliente pelo forms Indique &amp; Ganhe e ele fechou no dia 27/11. Quem indicou ganha em tudo: leva o <b>prêmio convencional do Indique &amp; Ganhe</b> (R$ 250 em Vendas ou R$ 80 em Expansão), <b>concorre ao pódio do Indique &amp; Ganhe</b>, <b>joga o The Wall</b>, <b>ganha pela opp qualificada</b> e ainda <b>concorre ao pódio do War Room</b>.</span></div>
     </div>
   </section>
 
@@ -448,13 +661,13 @@
     <p class="sub">Cada situação e onde ela conta.</p>
     <table class="decide">
       <thead>
-        <tr><th>Situação</th><th>Forms</th><th>R$ Indique &amp; Ganhe</th><th>Pódio I&amp;G</th><th>The Wall + Pódio War Room</th></tr>
+        <tr><th>Situação</th><th>Forms</th><th>Indique &amp; Ganhe<br>(R$ + pódio)</th><th>Por opp qualificada</th><th>The Wall + Pódio War Room</th></tr>
       </thead>
       <tbody>
-        <tr><td>Indiquei no mês e fechou antes de 27/11 (ou 28 a 30/11)</td><td>Indique &amp; Ganhe</td><td class="yes">✔ Sim</td><td class="yes">✔ Sim</td><td class="no">—</td></tr>
+        <tr><td>Indiquei no mês e fechou antes de 27/11 (ou 28 a 30/11)</td><td>Indique &amp; Ganhe</td><td class="yes">✔ Sim</td><td class="no">—</td><td class="no">—</td></tr>
         <tr><td>Indiquei no mês e fechou no dia 27/11</td><td>Indique &amp; Ganhe</td><td class="yes">✔ Sim</td><td class="yes">✔ Sim</td><td class="yes">✔ Sim</td></tr>
-        <tr><td>Lead da lista pronta (Gustavo/Ramon)</td><td>War Room BF</td><td class="no">—</td><td class="no">—</td><td class="yes">✔ Sim</td></tr>
-        <tr><td>Lead da lista pronta que eu já trabalhava</td><td>Indique &amp; Ganhe + comprovação</td><td class="yes">✔ Sim</td><td class="yes">✔ Sim</td><td class="yes">✔ Se fechar em 27/11</td></tr>
+        <tr><td>Lead da lista pronta (Gustavo/Ramon)</td><td>War Room BF</td><td class="no">—</td><td class="yes">✔ Sim</td><td class="yes">✔ The Wall se virar venda em 27/11 · pódio sim</td></tr>
+        <tr><td>Lead da lista pronta que eu já trabalhava</td><td>Indique &amp; Ganhe + comprovação</td><td class="yes">✔ Sim</td><td class="yes">✔ Se fechar em 27/11</td><td class="yes">✔ Se fechar em 27/11</td></tr>
       </tbody>
     </table>
   </section>
@@ -462,7 +675,22 @@
   <!-- SURPRESA -->
   <section class="reveal">
     <div class="card surprise">
-      <div class="gift">🎁</div>
+      <div class="gb-hint" id="gbHint">Clique para abrir 👇</div>
+      <button class="giftbox" id="giftbox" type="button" aria-label="Abrir o presente">
+        <span class="gb-wrap" aria-hidden="true">
+          <span class="gb-prizes">
+            <span style="--x:-78px;--y:-58px;--r:-28deg;animation-delay:0s">🪙</span>
+            <span style="--x:-58px;--y:-96px;--r:-18deg;animation-delay:.06s">💸</span>
+            <span style="--x:-28px;--y:-124px;--r:10deg;animation-delay:.12s">💰</span>
+            <span style="--x:2px;--y:-138px;--r:0deg;animation-delay:.18s">🤑</span>
+            <span style="--x:32px;--y:-120px;--r:-8deg;animation-delay:.24s">💲</span>
+            <span style="--x:62px;--y:-94px;--r:16deg;animation-delay:.30s">💸</span>
+            <span style="--x:82px;--y:-56px;--r:24deg;animation-delay:.36s">💵</span>
+          </span>
+          <span class="gb-body"></span>
+          <span class="gb-lid"><span class="gb-bow"></span></span>
+        </span>
+      </button>
       <h3>E o prêmio do pódio War Room?</h3>
       <p>Como em todas as edições, é <b>SURPRESA</b>. Mas pode confiar: vem coisa boa por aí.</p>
     </div>
@@ -485,7 +713,24 @@
   <!-- FINAL -->
   <section class="final reveal">
     <h2>Indiquem, indiquem<br><span class="grad-text">e indiquem.</span></h2>
-    <p>Você só tem a ganhar com as indicações. Se hidratem e venham preparados para o grande dia — ou melhor, para o grande <b>Black</b>.</p>
+    <p>Você só tem a ganhar com as indicações. Se hidratem e venham preparados para o grande dia, ou melhor, para a grande <b>Black</b>.</p>
+    <p class="folga-txt">E tem mais: <b>batendo a meta, a gente ainda ganha a folga</b>. Já pode ir pensando no descanso merecido. 🏖️</p>
+    <div class="vacay" aria-hidden="true">
+      <span class="badge">Meta batida = folga 😎</span>
+      <span class="cloud c1">☁️</span>
+      <span class="cloud c2">☁️</span>
+      <span class="sun"></span>
+      <div class="sea">
+        <svg class="wave w1" viewBox="0 0 1200 16" preserveAspectRatio="none"><path fill="#5cc6e6" d="M0 12 Q75 0 150 12 T300 12 T450 12 T600 12 T750 12 T900 12 T1050 12 T1200 12 V16 H0 Z"/></svg>
+        <svg class="wave w2" viewBox="0 0 1200 16" preserveAspectRatio="none"><path fill="#e9fbff" d="M0 10 Q75 0 150 10 T300 10 T450 10 T600 10 T750 10 T900 10 T1050 10 T1200 10 V16 H0 Z"/></svg>
+      </div>
+      <span class="boat">⛵</span>
+      <span class="sand"></span>
+      <span class="palm">🌴</span>
+      <span class="zzz"><span>z</span><span>z</span><span>z</span></span>
+      <span class="umbrella">⛱️</span>
+      <span class="drink">🍹</span>
+    </div>
     <div class="shout">Bora fazer história? 🚀</div>
     <p style="margin-top:22px;font-size:14px">Dúvidas? O time de <b>Gestão de Pessoas</b> está à disposição.</p>
   </section>
@@ -541,6 +786,22 @@
   });
   document.getElementById('rainBtn').addEventListener('click', function(){ if(!reduce) storm(60); });
 
+  // caixinha do pódio: fica fechada e só abre no clique
+  var gift = document.getElementById('giftbox'), gbHint = document.getElementById('gbHint');
+  function closeGift(){ gift.classList.remove('open'); gbHint.classList.remove('hide'); }
+  gift.addEventListener('click', function(){
+    if (gift.classList.contains('open')) { if (reduce) closeGift(); return; }
+    gift.classList.add('open');
+    gbHint.classList.add('hide');
+    // a explosão de dinheiro só vem quando a tampa já abriu (25% de 3,6 s ≈ 0,9 s)
+    setTimeout(function(){
+      var r = gift.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 3);
+    }, 950);
+  });
+  // terminou de abrir, soltar o dinheiro e fechar: volta o "Clique para abrir"
+  gift.querySelector('.gb-lid').addEventListener('animationend', closeGift);
+
   // countdown
   var target = new Date('2026-11-27T08:00:00-03:00').getTime();
   var end = new Date('2026-11-28T00:00:00-03:00').getTime();
@@ -557,7 +818,18 @@
   }
   tick(); setInterval(tick, 1000);
 
-  // simulator
+  // faixas da opp qualificada (documento oficial do War Room)
+  // limites mínimos de cada faixa: R$ 10, 15, 20, 25, 30
+  var FAIXAS = { v:[1,3,5,7,9], e:[1,6,11,16,21] };
+  var VALORES = [10,15,20,25,30];
+  function faixa(a, n){
+    var idx = -1;
+    FAIXAS[a].forEach(function(min, i){ if (n >= min) idx = i; });
+    return idx;
+  }
+  function valorOpp(a, n){ var i = faixa(a, n); return i < 0 ? 0 : VALORES[i]; }
+
+  // simulador do Indique & Ganhe: as indicações fechadas em 27/11 também são opp qualificada
   var val = 250, tot = document.getElementById('tot'), day = document.getElementById('day');
   var fmt = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
   function calc(){
@@ -565,21 +837,51 @@
     day.max = t;
     if (+day.value > t) day.value = t;
     var dd = +day.value;
+    var areaSim = val === 250 ? 'v' : 'e';
+    var unitOpp = valorOpp(areaSim, dd);
     document.getElementById('totOut').textContent = t;
     document.getElementById('dayOut').textContent = dd;
-    document.getElementById('simTotal').textContent = fmt.format(t*val);
+    document.getElementById('simIgCalc').textContent = t + ' × R$ ' + val;
+    document.getElementById('simIgVal').textContent = fmt.format(t*val);
+    document.getElementById('simOppCalc').textContent = dd + ' × R$ ' + unitOpp;
+    document.getElementById('simOppVal').textContent = fmt.format(dd*unitOpp);
+    document.getElementById('simTotal').textContent = fmt.format(t*val + dd*unitOpp);
     document.getElementById('simWall').textContent = dd;
     document.getElementById('simPod').textContent = dd;
     document.getElementById('simIg').textContent = t;
   }
   tot.addEventListener('input', calc); day.addEventListener('input', calc);
-  document.querySelectorAll('.seg button').forEach(function(b){
+  document.querySelectorAll('#simSeg button').forEach(function(b){
     b.addEventListener('click', function(){
-      document.querySelectorAll('.seg button').forEach(function(x){ x.classList.remove('on'); });
+      document.querySelectorAll('#simSeg button').forEach(function(x){ x.classList.remove('on'); });
       b.classList.add('on'); val = +b.dataset.v; calc();
     });
   });
   calc();
+
+  // calculadora por opp qualificada (Passo 3)
+  var area = 'v', opps = document.getElementById('opps');
+  function calcOpp(){
+    var n = +opps.value, i = faixa(area, n), unit = i < 0 ? 0 : VALORES[i];
+    document.getElementById('oppsOut').textContent = n;
+    document.getElementById('oppTotal').textContent = fmt.format(n * unit);
+    document.getElementById('oppLine').innerHTML = n === 0
+      ? 'Qualifique a 1ª opp para entrar na escada'
+      : n + (n === 1 ? ' opp' : ' opps') + ' × <b>R$ ' + unit + '</b> cada';
+    document.querySelectorAll('#accelTable td.hit').forEach(function(td){ td.classList.remove('hit'); });
+    if (i >= 0){
+      var row = document.querySelector('#accelTable tr[data-area="' + area + '"]');
+      row.children[i + 1].classList.add('hit');
+    }
+  }
+  opps.addEventListener('input', calcOpp);
+  document.querySelectorAll('#oppSeg button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#oppSeg button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on'); area = b.dataset.a; calcOpp();
+    });
+  });
+  calcOpp();
 
   // reveal on scroll
   var els = document.querySelectorAll('.reveal');
